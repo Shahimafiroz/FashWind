@@ -13,7 +13,12 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function Container({ originalData, setElementsOnclickOftheAddButton }) {
+function Container({
+  showTick,
+  originalData,
+  setElementsOnclickOftheAddButton,
+  incrementDecrement,
+}) {
   return (
     // <div>
     //   {originalData.map((data) => (
@@ -35,6 +40,7 @@ function Container({ originalData, setElementsOnclickOftheAddButton }) {
                   setElementsOnclickOftheAddButton={
                     setElementsOnclickOftheAddButton
                   }
+                  incrementDecrement={incrementDecrement}
                 />
               </Item>
             </Grid>

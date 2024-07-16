@@ -15,6 +15,9 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,24 +35,31 @@ const ExpandMore = styled((props) => {
 // category={eachData.category}
 // bigPara={eachData.description}
 
-function ProductCard({ eachData, setElementsOnclickOftheAddButton }) {
+function ProductCard({
+  eachData,
+  setElementsOnclickOftheAddButton,
+  incrementDecrement,
+}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log("from the products page");
+  // console.log("from the products page");
   return (
     // <div>
     //   <h1>Product</h1>
     // </div>
     <div>
       <Card sx={{ maxWidth: 345 }}>
+        {/* {console.log("hii this is show tick : ", showTick)} */}
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: "#E68BBE" }} aria-label="recipe">
-              {eachData.quantity}
-            </Avatar>
+            eachData.showTick ? (
+              <Avatar sx={{ bgcolor: "#E68BBE" }} aria-label="recipe">
+                <DoneOutlineIcon />
+              </Avatar>
+            ) : null
           }
           action={
             <IconButton aria-label="settings">
@@ -73,7 +83,7 @@ function ProductCard({ eachData, setElementsOnclickOftheAddButton }) {
         </CardContent>
         <CardActions disableSpacing>
           <IconButton
-            onClick={() => setElementsOnclickOftheAddButton(eachData)}
+            onClick={() => setElementsOnclickOftheAddButton(eachData, "add")}
           >
             <AddShoppingCartIcon />
             {/* <p style={{ fontSize: "small" }}>ADD TO CART</p> */}
@@ -86,6 +96,25 @@ function ProductCard({ eachData, setElementsOnclickOftheAddButton }) {
           >
             <ExpandMoreIcon />
           </ExpandMore>
+          <Typography>
+            <ButtonGroup variant="contained" aria-label="Basic button group">
+              <Button
+                onClick={() => incrementDecrement(eachData, "inc")}
+                sx={{ backgroundColor: "#F4B8DA" }}
+              >
+                +
+              </Button>
+              <Button sx={{ backgroundColor: "#E68BBE" }}>
+                {eachData.quantity}
+              </Button>
+              <Button
+                onClick={() => incrementDecrement(eachData, "dec")}
+                sx={{ backgroundColor: "#F4B8DA" }}
+              >
+                -
+              </Button>
+            </ButtonGroup>
+          </Typography>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>

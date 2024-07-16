@@ -1,18 +1,35 @@
 import React from "react";
 import Cart from "./Cart";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-function CartList({ item, removeElementsOnclickOfTheRemoveButton }) {
+import {
+  ButtonGroup,
+  Button,
+  ListItem,
+  IconButton,
+  Typography,
+  ListItemAvatar,
+  ListItemText,
+  Divider,
+  Avatar,
+  List,
+} from "@mui/material";
+
+function CartList({
+  item,
+  removeElementsOnclickOfTheRemoveButton,
+  incrementDecrement,
+}) {
   return (
     <div>
-      {console.log(item)}
-      <Divider variant="inset" component="li" />
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{
+          backgroundColor: "#E68BBE",
+          height: "1px",
+        }}
+      />
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Travis Howard" src={item.image} />
@@ -29,12 +46,42 @@ function CartList({ item, removeElementsOnclickOfTheRemoveButton }) {
               >
                 {item.price}
               </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
+
+              <IconButton
+                onClick={() => removeElementsOnclickOfTheRemoveButton(item)}
+              >
+                <DeleteOutlineIcon />
+                {/* <p style={{ fontSize: "small" }}>ADD TO CART</p> */}
+              </IconButton>
+              <ButtonGroup variant="contained" aria-label="Basic button group">
+                <Button
+                  onClick={() => incrementDecrement(item, "inc", "list")}
+                  sx={{ backgroundColor: "#F4B8DA" }}
+                >
+                  +
+                </Button>
+                <Button sx={{ backgroundColor: "#E68BBE" }}>
+                  {item.quantity}
+                </Button>
+                <Button
+                  onClick={() => incrementDecrement(item, "dec", "list")}
+                  sx={{ backgroundColor: "#F4B8DA" }}
+                >
+                  -
+                </Button>
+              </ButtonGroup>
             </React.Fragment>
           }
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{
+          backgroundColor: "#F9CEE7",
+          height: "1px",
+        }}
+      />
     </div>
   );
 }

@@ -11,7 +11,11 @@ import logo from "../Assets/Logo.png";
 import Drawer from "@mui/material/Drawer";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-function Navbar({ cartItems, removeElementsOnclickOfTheRemoveButton }) {
+function Navbar({
+  cartItems,
+  removeElementsOnclickOfTheRemoveButton,
+  incrementDecrement,
+}) {
   // logic for openeing the drawer
   const [open, setOpen] = React.useState(false);
   const openCart = () => {
@@ -64,6 +68,7 @@ function Navbar({ cartItems, removeElementsOnclickOfTheRemoveButton }) {
                     removeElementsOnclickOfTheRemoveButton={
                       removeElementsOnclickOfTheRemoveButton
                     }
+                    incrementDecrement={incrementDecrement}
                   />
                 </Drawer>
               </IconButton>

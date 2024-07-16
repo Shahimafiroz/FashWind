@@ -12,8 +12,13 @@ import MailIcon from "@mui/icons-material/Mail";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CartList from "./List";
-function Cart({ openCart, cartItems, removeElementsOnclickOfTheRemoveButton }) {
-  console.log(cartItems[0]);
+function Cart({
+  openCart,
+  cartItems,
+  removeElementsOnclickOfTheRemoveButton,
+  incrementDecrement,
+}) {
+  // console.log(cartItems[0]);
   return (
     <div>
       <Box sx={{ width: 500 }} role="presentation" onClick={openCart}>
@@ -38,6 +43,7 @@ function Cart({ openCart, cartItems, removeElementsOnclickOfTheRemoveButton }) {
                 removeElementsOnclickOfTheRemoveButton={
                   removeElementsOnclickOfTheRemoveButton
                 }
+                incrementDecrement={incrementDecrement}
               />
             </List>
           ))}
