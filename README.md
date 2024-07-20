@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# FashWind2.0 - Ecommerce React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Use the following data to Login
+
+1. UserName :- johnd , Password:-m38rmF$
+2. UserName :- kevinryan , Password:-kev02937@
+
+> Note : When you register it only appers as if you are regstering
+
+This Project was made using https://github.com/keikaavousi/fake-store-api
+(it does not have a backend)
 
 ## Available Scripts
 
