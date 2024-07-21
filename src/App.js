@@ -7,24 +7,27 @@ import ParentUser from "./components/users/ParentUser";
 import Footer from "./components/Footer";
 import SingeleProduct from "./components/products/SingelProduct";
 import Contact from "./components/Contact";
-
+import { Provider } from "react-redux";
+import store from "./Redux/index";
 function App() {
   return (
     <div
       className="App"
       style={{ display: "flex", flexDirection: "column", height: "100vh" }}
     >
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<AllProducts />} />
-          <Route path="/products/:id" element={<SingeleProduct />} />
-          <Route path="/loginRegister" element={<ParentUser />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<AllProducts />} />
+            <Route path="/products/:id" element={<SingeleProduct />} />
+            <Route path="/loginRegister" element={<ParentUser />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }

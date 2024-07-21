@@ -1,7 +1,8 @@
 import React from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
-
+import FacebookIcon from "@mui/icons-material/Facebook";
+import PinterestIcon from "@mui/icons-material/Pinterest";
 function Footer() {
   return (
     <div
@@ -28,10 +29,10 @@ function Footer() {
           <div>
             <div style={{ display: "flex", justifyContent: "space-evenly" }}>
               <div style={{ padding: "40px" }}>
-                <InstagramIcon />
+                <FacebookIcon />
               </div>
               <div style={{ padding: "40px" }}>
-                <TwitterIcon />
+                <PinterestIcon />
               </div>
             </div>
           </div>
