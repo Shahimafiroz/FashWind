@@ -82,11 +82,13 @@ const productsReducer = (state = initialState, action) => {
       const clickedId = action.payload;
       const originalData = state.data;
       const localCartItems = state.cartItems;
-      // const indexAtWhichItIspresentAtTheDataArray = originalData.findIndex(
-      //   (dataItem) => dataItem.id == clickedId
-      // );
-      // console.log(indexAtWhichItIspresentAtTheDataArray);
+      const indexAtWhichItIspresentAtTheDataArray = originalData.findIndex(
+        (dataItem) => dataItem.id == clickedId
+      );
+      console.log(indexAtWhichItIspresentAtTheDataArray);
       // return{};
+
+      return state;
     }
 
     case DECREMENT:
