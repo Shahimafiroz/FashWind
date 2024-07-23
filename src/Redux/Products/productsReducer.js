@@ -33,7 +33,6 @@ const productsReducer = (state = initialState, action) => {
       //--------------------------------------updating the clicked card------------------ //
       const ModifeiedclickedProduct = {
         ...clickedProduct,
-        quantity: clickedProduct.quantity + 1,
         showTick: true,
       };
       //--updating the index of clicked card in original data --//
@@ -51,22 +50,18 @@ const productsReducer = (state = initialState, action) => {
 
       // --------------------------------- setting elemnets in cart----------------//
       if (indexAtWhichItsPresentInCartItems) {
-        console.log("inside");
-        console.log([...state.cartItems]);
-        // console.log("this is not in cart :", indexAtWhichItsPresentInCartItems);
+        localCartItems = [...localCartItems, ModifeiedclickedProduct];
         return {
           ...state,
           cartItems: localCartItems,
           data: originalData,
         };
       } else {
-        console.log("else block");
-
-        alert(
-          "Item Already present it Your Cart",
-          ModifeiedclickedProduct.quantity
+        console.log(
+          "incase utem is already presentin your cart",
+          state.cartItems
         );
-
+        alert("Item Already present it Your Cart", ModifeiedclickedProduct);
         return { ...state };
         // console.log(
         //   "Item Already present it Your Cart",
@@ -80,12 +75,25 @@ const productsReducer = (state = initialState, action) => {
 
     case INCREMENT: {
       const clickedId = action.payload;
-      const originalData = state.data;
-      const localCartItems = state.cartItems;
-      const indexAtWhichItIspresentAtTheDataArray = originalData.findIndex(
-        (dataItem) => dataItem.id == clickedId
+      const originalData = [...state.data];
+      const localCartItems = [...state.cartItems];
+      const indexPresentAtTheDataArray = originalData.findIndex(
+        (dataItemm) => dataItemm.id == clickedId
       );
-      console.log(indexAtWhichItIspresentAtTheDataArray);
+      console.log(
+        "Data Index Object",
+        originalData[indexPresentAtTheDataArray]
+      );
+      const indexpresentAtTheCartItemArray = localCartItems.findIndex(
+        (cartItem) => cartItem.id == clickedId
+      );
+      console.log(
+        "Cart Index Object",
+        localCartItems[indexpresentAtTheCartItemArray]
+      );
+
+      originalData = [...originalData, {}];
+
       // return{};
 
       return state;

@@ -16,6 +16,7 @@ import {
 import productsReducer from "../../Redux/Products/productsReducer";
 import { type } from "@testing-library/user-event/dist/type";
 import EachCard from "./EachCard";
+import Search from "./Search";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -69,7 +70,7 @@ function AllProducts() {
         ) : (
           <div>
             <div>
-              <h1>search element</h1>
+              <Search />
             </div>
             <div>
               <Box sx={{ flexGrow: 1 }}>

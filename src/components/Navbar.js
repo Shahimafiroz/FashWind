@@ -14,7 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import Drawer from "@mui/material/Drawer";
 import { useState } from "react";
+import Cart from "./CartComps/Cart";
 
 const pages = [
   { name: "Home", NavLink: "/", id: 1 },
@@ -31,6 +33,8 @@ const users = [
 ];
 
 function Navbar() {
+  /////---logic for openeing cart ---///////
+  const [open, setOpen] = React.useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const Navigate = useNavigate();
@@ -44,6 +48,9 @@ function Navbar() {
   };
   const handleUserMenu = () => {
     setShowUserMenu((prev) => !prev);
+  };
+  const openCart = () => {
+    setOpen((prev) => !prev);
   };
   return (
     <div>
@@ -158,8 +165,11 @@ function Navbar() {
             </Box>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Cart items">
-                <IconButton onClick={() => {}} sx={{ p: 2, m: 1 }}>
+                <IconButton onClick={openCart} sx={{ p: 2, m: 1 }}>
                   <ShoppingCartIcon />
+                  <Drawer anchor="right" open={open} onClose={openCart}>
+                    <Cart open={open} onClose={openCart} />
+                  </Drawer>
                 </IconButton>
               </Tooltip>
               <Tooltip title="User">

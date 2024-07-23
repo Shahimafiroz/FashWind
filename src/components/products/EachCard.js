@@ -38,6 +38,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function EachCard({ product }) {
+  const [qunatity, setqunatity] = useState(1);
   ////------------------functional logic--------------------------////
   const dispatch = useDispatch();
   // console.log(product);
@@ -47,12 +48,13 @@ function EachCard({ product }) {
     // console.log("this is cart items", state.cartItems);
   };
   const incrementHandeler = () => {
-    dispatch({ type: INCREMENT, payload: product.id });
+    // dispatch({ type: INCREMENT, payload: product.id });
+    setqunatity((prev) => prev + 1);
     console.log("increment_id", product.id);
   };
 
   const decrementHandeler = () => {
-    dispatch({ type: DECREMENT, payload: product.id });
+    // dispatch({ type: DECREMENT, payload: product.id });
     console.log("decrement_id", product.id);
   };
 
