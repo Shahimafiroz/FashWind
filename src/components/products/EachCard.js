@@ -16,15 +16,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useSelector, useDispatch } from "react-redux";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
-import { type } from "@testing-library/user-event/dist/type";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import productsReducer from "../../Redux/Products/productsReducer";
 import {
   SETCARTITEMS,
   INCREMENT,
   DECREMENT,
 } from "../../Redux/Products/productsActionTypes";
-import { Padding } from "@mui/icons-material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,24 +35,40 @@ const ExpandMore = styled((props) => {
 }));
 
 function EachCard({ product }) {
-  const [qunatity, setqunatity] = useState(1);
   ////------------------functional logic--------------------------////
   const dispatch = useDispatch();
+  const state = useSelector((state) => state.productsReducer);
   // console.log(product);
   //---- setting cart items using dispatch
   const setCartitems = () => {
     dispatch({ type: SETCARTITEMS, payload: product });
-    // console.log("this is cart items", state.cartItems);
+    console.log(
+      "logging cart items from each product",
+      state.cartItems,
+      product
+    );
   };
   const incrementHandeler = () => {
-    // dispatch({ type: INCREMENT, payload: product.id });
-    setqunatity((prev) => prev + 1);
-    console.log("increment_id", product.id);
+    dispatch({ type: INCREMENT, payload: product.id });
+    console.log(
+      "increment_id",
+      product.id,
+      "Previous Quntity",
+      product.quantity
+    );
   };
 
   const decrementHandeler = () => {
-    // dispatch({ type: DECREMENT, payload: product.id });
-    console.log("decrement_id", product.id);
+    dispatch({
+      type: DECREMENT,
+      payload: product.id,
+    });
+    console.log(
+      "decrement_id from dispatch",
+      product.id,
+      "Previous Quntity",
+      product.quantity
+    );
   };
 
   //------------------//

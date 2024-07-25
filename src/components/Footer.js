@@ -10,7 +10,7 @@ function Footer() {
         // flex: 1,
         marginBottom: "0px",
         background: "#1e1305",
-        height: "200px",
+        height: "auto",
         width: "100%",
         color: "#EDE0D0",
         fontFamily: "Nanum Myeongjo",
@@ -49,8 +49,36 @@ function Footer() {
             FashWind
           </h1>
         </div>
-        <div style={{ textAlign: "left", padding: "1rem" }}>
-          <p></p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            padding: "2rem 0rem",
+          }}
+        >
+          <div style={{ textAlign: "left", padding: "1rem" }}>
+            <p>
+              Phone: +91 86054 10290 <br></br>
+              Email: Fashwind@theMail.com<br></br>
+              Address:1234 Street Name City, AA 99999
+            </p>
+          </div>
+          <div style={{ textAlign: "right", padding: "1rem" }}>
+            <p>
+              About Us <br></br>
+              Services <br></br>
+              Get In Touch
+            </p>
+          </div>
+        </div>
+        <div style={{ textAlign: "center", padding: "1rem" }}>
+          <p>
+            <br></br>
+          </p>
+          <p>
+            <br></br>
+          </p>
+          <p>© Copyright 2018 FashWind - All Rights Reserved</p>
         </div>
       </div>
     </div>

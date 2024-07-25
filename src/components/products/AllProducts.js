@@ -1,20 +1,17 @@
 import axios from "axios";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Loading from "../Loading";
 import {
   LOADING,
   SETDATA,
   ERROR,
-  SETCARTITEMS,
-  SETSEARCHVALUE,
 } from "../../Redux/Products/productsActionTypes";
-import productsReducer from "../../Redux/Products/productsReducer";
-import { type } from "@testing-library/user-event/dist/type";
 import EachCard from "./EachCard";
 import Search from "./Search";
 
@@ -28,7 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 function AllProducts() {
   const state = useSelector((state) => state.productsReducer);
   const dispatch = useDispatch();
-  // ------getting data-------//
+  // ----------------------getting data ------------------//
   console.log("this is the state", state);
   useEffect(() => {
     const getResponse = async () => {
@@ -38,8 +35,9 @@ function AllProducts() {
         quantity: 1,
         showTick: false,
       }));
-      // console.log(modifiedRecivedData);
+      // console.log("modiffftfctgf", modifiedRecivedData);
       const products = modifiedRecivedData;
+      console.log("here are products ", products);
       if (products) {
         dispatch({ type: LOADING, payload: false });
         dispatch({ type: SETDATA, payload: products });
@@ -66,7 +64,9 @@ function AllProducts() {
         }}
       >
         {state.loading ? (
-          <h1>Loading data .... </h1>
+          <div>
+            <Loading />
+          </div>
         ) : (
           <div>
             <div>
@@ -81,16 +81,7 @@ function AllProducts() {
                   sx={{ padding: "20px 20px" }}
                 >
                   {state.data.map((product) => (
-                    <Grid
-                      item
-                      xs={12}
-                      sm={4}
-                      md={3}
-                      key={product.id}
-                      // sx={{
-                      //   padding: "1rem",
-                      // }}
-                    >
+                    <Grid item xs={12} sm={4} md={3} key={product.id}>
                       <Item sx={{ background: "#20170C" }}>
                         <EachCard product={product} />
                       </Item>
