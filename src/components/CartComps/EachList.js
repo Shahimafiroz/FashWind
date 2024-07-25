@@ -15,24 +15,23 @@ import {
   List,
 } from "@mui/material";
 
-function CartList({}) {
+function CartList({ cartItem }) {
   return (
-    <div>
+    <div style={{ color: "#7c0000" }}>
       <Divider
         variant="inset"
         component="li"
         sx={{
-          backgroundColor: "#E68BBE",
+          backgroundColor: "#7c0000",
           height: "1px",
         }}
       />
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          {/* <Avatar alt="Travis Howard" src={item.image} /> */}
-          <Avatar alt="Travis Howard" />
+          <Avatar alt="Travis Howard" src={cartItem.image} />
         </ListItemAvatar>
         <ListItemText
-          // primary={item.title}
+          primary={cartItem.title}
           secondary={
             <React.Fragment>
               <Typography
@@ -41,7 +40,7 @@ function CartList({}) {
                 variant="body2"
                 color="text.primary"
               >
-                {/* {item.price} */}
+                {cartItem.price}
               </Typography>
 
               <IconButton
@@ -54,16 +53,16 @@ function CartList({}) {
               <ButtonGroup variant="contained" aria-label="Basic button group">
                 <Button
                   // onClick={() => incrementDecrement(item, "inc", "list")}
-                  sx={{ backgroundColor: "#F4B8DA" }}
+                  sx={{ backgroundColor: "#7c0000" }}
                 >
                   +
                 </Button>
-                <Button sx={{ backgroundColor: "#E68BBE" }}>
-                  {/* {item.quantity} */}
+                <Button sx={{ backgroundColor: "#1A4941" }}>
+                  {cartItem.quantity}
                 </Button>
                 <Button
                   // onClick={() => incrementDecrement(item, "dec", "list")}
-                  sx={{ backgroundColor: "#F4B8DA" }}
+                  sx={{ backgroundColor: "#7c0000" }}
                 >
                   -
                 </Button>
@@ -76,7 +75,7 @@ function CartList({}) {
         variant="inset"
         component="li"
         sx={{
-          backgroundColor: "#F9CEE7",
+          backgroundColor: "#F1720C",
           height: "1px",
         }}
       />
