@@ -22,7 +22,7 @@ function CartList({ cartItem }) {
         variant="inset"
         component="li"
         sx={{
-          backgroundColor: "#7c0000",
+          backgroundColor: "red",
           height: "1px",
         }}
       />

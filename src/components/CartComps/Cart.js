@@ -23,24 +23,32 @@ function Cart({ open, openCart }) {
     <div
       style={{
         flex: 1,
-        padding: "1rem 2rem",
-        background: "#ede0d0",
+        padding: "1rem 1rem",
+        background: "#d0ba9e",
         backgroundImage:
-          'url("https://www.transparenttextures.com/patterns/batthern.png")',
+          'url("https://www.transparenttextures.com/patterns/black-mamba.png")',
         display: "flex",
         flexDirection: "column",
         color: "#F1720C",
       }}
     >
-      <Box sx={{ width: 500 }} role="presentation" onClick={openCart}>
+      <Box
+        sx={{
+          flex: 1,
+          width: 500,
+          background: "#ede0d0",
+        }}
+        role="presentation"
+        onClick={openCart}
+      >
         <IconButton sx={{ padding: "1rem", color: "#F1720C" }}>
           <CloseIcon />
         </IconButton>
         {cartItems.map((cartItem) => {
-          console.log(cartItem.clickedProduct);
+          // console.log(cartItem.clickedProduct);
           return (
             <List>
-              <EachList cartItem={cartItem.clickedProduct} />
+              <EachList cartItem={cartItem} />
             </List>
           );
         })}

@@ -37,11 +37,12 @@ const productsReducer = (state = initialState, action) => {
     //---------------------------------- 4 SET CART ITEMS  --------------------------------------//
     case SETCARTITEMS: {
       let clickedProduct = { ...action.payload };
-      console.log(" 1 .clicked product id ", clickedProduct.id);
+      // console.log(" 1 .clicked product id ", clickedProduct.id);
       let originalData = [...state.data];
       let localCartItems = [...state.cartItems];
+      console.log({ localCartItems });
       //   lets deal with cart first
-      console.log(" 2 . local cart items", localCartItems);
+      // console.log(" 2 . local cart items", localCartItems);
       const index = localCartItems.findIndex((eachItem) => {
         console.log(
           "3 .executing the find index function ",
@@ -52,7 +53,8 @@ const productsReducer = (state = initialState, action) => {
         );
         return eachItem.id == clickedProduct.id;
       });
-      // const matchingArrayIndex = localCartItems.findIndex((cartItem) => {
+      console.log("index", index);
+      // {const matchingArrayIndex = localCartItems.findIndex((cartItem) => {
       //   console.log(
       //     "cart item id ",
       //     cartItem.id,
@@ -78,19 +80,18 @@ const productsReducer = (state = initialState, action) => {
       //     localCartItems[matchingArrayIndex]
       //   );
       // }
-      if (index > -1) {
+      //}
+      if (index !== -1) {
         localCartItems[index] = {
           ...localCartItems[index],
           quantity: localCartItems[index].quantity + clickedProduct.quantity,
         };
-        console.log(
-          "here is the updated qunatity object ",
-          localCartItems[index]
-        );
+        console.log("Indeqter than -1) ----------->", localCartItems[index]);
         //
       } else {
+        console.log("THE INDEX IS -1  -------->", localCartItems[index]);
         // localCartItems.push(clickedProduct);
-        localCartItems = [...localCartItems, { clickedProduct }];
+        localCartItems = [...localCartItems, clickedProduct];
         // --> why wasnt this working ?????????????????/
         console.log("here are the cart items", localCartItems);
         // console.log("here are the cart items", matchingArrayIndex);
@@ -150,7 +151,9 @@ const productsReducer = (state = initialState, action) => {
           originalData[matchingDataItemIndex].quantity;
         return { ...state, data: originalData };
       } else {
-        alert("Quantity Cannot be less than 1 , Order hi mt karo fir ");
+        alert(
+          " Bhai Order hi mt kr! Ek se kam ky lega tu ?(Quantity Cannot be less than 1)"
+        );
         console.log(
           "Quantity Cannot be less than 1 , Order hi mt karo fir",
           state
