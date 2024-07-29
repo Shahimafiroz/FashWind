@@ -1,7 +1,7 @@
 import React from "react";
 import Cart from "./Cart";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-
+import { useDispatch, useSelector } from "react-redux";
 import {
   ButtonGroup,
   Button,
@@ -14,8 +14,37 @@ import {
   Avatar,
   List,
 } from "@mui/material";
+import productsReducer from "../../Redux/Products/productsReducer";
+import {
+  INCEREMENT_CART,
+  DECREMENT_CART,
+  REMOVE_CART_ITEMS,
+} from "../../Redux/Products/productsActionTypes";
+import { type } from "@testing-library/user-event/dist/type";
 
 function CartList({ cartItem }) {
+  const dispatch = useDispatch();
+
+  const incrementButtonHandler = () => {
+    dispatch({ type: INCEREMENT_CART, payload: cartItem.id });
+    console.log("INC_CART");
+  };
+
+  const DecrementHandler = (qunatity) => {
+    if (qunatity > 1) {
+      dispatch({ type: DECREMENT_CART, payload: cartItem.id });
+      console.log("DEC_CART", qunatity);
+    } else {
+      dispatch({ type: REMOVE_CART_ITEMS, payload: cartItem.id });
+      console.log("REM_CART", qunatity);
+    }
+  };
+
+  const deleteHandeler = () => {
+    dispatch({ type: REMOVE_CART_ITEMS, payload: cartItem.id });
+    console.log("decrement handler");
+  };
+
   return (
     <div style={{ color: "#7c0000" }}>
       <Divider
@@ -33,7 +62,7 @@ function CartList({ cartItem }) {
         <ListItemText
           primary={cartItem.title}
           secondary={
-            <React.Fragment>
+            <>
               <Typography
                 sx={{ display: "inline" }}
                 component="span"
@@ -44,15 +73,16 @@ function CartList({ cartItem }) {
               </Typography>
 
               <IconButton
-              // onClick={() => removeElementsOnclickOfTheRemoveButton(item)}
-              // onClick={""}
+                // onClick={() => removeElementsOnclickOfTheRemoveButton(item)}
+                // onClick={() => deleteAndDecrementHandler(cartItem.quantity)}
+                onClick={deleteHandeler}
               >
                 <DeleteOutlineIcon />
-                {/* <p style={{ fontSize: "small" }}>ADD TO CART</p> */}
               </IconButton>
               <ButtonGroup variant="contained" aria-label="Basic button group">
                 <Button
                   // onClick={() => incrementDecrement(item, "inc", "list")}
+                  onClick={incrementButtonHandler}
                   sx={{ backgroundColor: "#7c0000" }}
                 >
                   +
@@ -61,13 +91,16 @@ function CartList({ cartItem }) {
                   {cartItem.quantity}
                 </Button>
                 <Button
-                  // onClick={() => incrementDecrement(item, "dec", "list")}
+                  onClick={() => {
+                    DecrementHandler(cartItem.quantity);
+                  }}
+                  // onClick={deleteAndDecrementHandler}
                   sx={{ backgroundColor: "#7c0000" }}
                 >
                   -
                 </Button>
               </ButtonGroup>
-            </React.Fragment>
+            </>
           }
         />
       </ListItem>

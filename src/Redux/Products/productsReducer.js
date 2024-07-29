@@ -101,7 +101,22 @@ const productsReducer = (state = initialState, action) => {
 
       return { ...state, cartItems: localCartItems };
     }
+    //------------------------------------ 6 Remove Cart Items -------------------------------------//
+
+    case REMOVE_CART_ITEMS: {
+      // console.log("DEL action Payload : ", action.payload);
+      const clickedListId = action.payload;
+      const localCartItems = [...state.cartItems];
+      // console.log("REM_CART_ LOcal items:", localCartItems);
+      const arrayAfterDeletingTheClickedList = localCartItems.filter(
+        (eachItem) => eachItem.id !== clickedListId
+      );
+      // 
+      
+      return { ...state , cartItems:arrayAfterDeletingTheClickedList };
+    }
     //------------------------------------ 6 INCREMENT CARD -------------------------------------//
+
     case INCREMENT: {
       const originalData = [...state.data];
       const clickedID = action.payload;
@@ -162,11 +177,18 @@ const productsReducer = (state = initialState, action) => {
       }
     }
     //------------------------------------ 8 INCREMENT CART ----------------------------------------//
-    case INCEREMENT_CART:
-      return {};
+    case INCEREMENT_CART: {
+      console.log("INC action Payload : ", action.payload);
+      const localCartItems = [...state];
+      console.log("local cart items log fomr inc:", localCartItems);
+      // const deltedItemCartArray = filter.
+      return { ...state };
+    }
     //------------------------------------ 9 DECREMENT CART ----------------------------------------//
-    case DECREMENT_CART:
-      return {};
+    case DECREMENT_CART: {
+      console.log("DECCART action payload :", action.payload);
+      return { ...state };
+    }
     //------------------------------------ END ----------------------------------------//
     default:
       return state;

@@ -47,7 +47,7 @@ function Cart({ open, openCart }) {
         {cartItems.map((cartItem) => {
           // console.log(cartItem.clickedProduct);
           return (
-            <List>
+            <List key={cartItem.id}>
               <EachList cartItem={cartItem} />
             </List>
           );
