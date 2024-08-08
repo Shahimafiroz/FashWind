@@ -163,7 +163,12 @@ function Navbar() {
                 </Button>
               ))}
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
+
+            <Box
+              sx={{
+                flexGrow: 0,
+              }}
+            >
               <Tooltip title="Cart items">
                 <IconButton onClick={openCart} sx={{ p: 2, m: 1 }}>
                   <ShoppingCartIcon />
@@ -172,14 +177,41 @@ function Navbar() {
                   </Drawer>
                 </IconButton>
               </Tooltip>
-              <Tooltip title="User">
-                <IconButton onClick={handleUserMenu} sx={{ p: 0 }}>
+
+              <Tooltip title="User" sx={{ padding: "50px" }}>
+                <IconButton
+                  onClick={handleUserMenu}
+                  sx={{ p: 0, paddingRight: "30px" }}
+                >
                   <Avatar
                     alt="Remy Sharp"
                     src="https://upload.wikimedia.org/wikipedia/commons/5/58/John_Cena_2024.png"
                   />
                 </IconButton>
               </Tooltip>
+
+              <Tooltip title="Login / Register" sx={{ padding: "50px" }}>
+                <Button
+                  onClick={() => handelNavigate("/loginRegister")}
+                  variant="contained"
+                  sx={{
+                    background: "#20170c",
+                    color: "#f1720c",
+                    textTransform: "capitalize",
+                    // fontFamily:'Sevillana',
+                    fontFamily: "Cormorant Upright",
+                    fontWeight: "bold",
+
+                    "&:hover": {
+                      background: "#1a4941",
+                      color: "#f1720c",
+                    },
+                  }}
+                >
+                  Login / Register
+                </Button>
+              </Tooltip>
+
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
