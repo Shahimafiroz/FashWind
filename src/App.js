@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./../src/components/Home";
 import AllProducts from "./components/products/AllProducts";
-import ParentUser from "./components/users/ParentUser";
+import Login from "./components/users/Login";
 import Footer from "./components/Footer";
 import SingeleProduct from "./components/products/SingelProduct";
 import Contact from "./components/Contact";
@@ -22,7 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<AllProducts />} />
             <Route path="/products/:id" element={<SingeleProduct />} />
-            <Route path="/loginRegister" element={<ParentUser />} />
+            <Route path="/loginRegister" element={<Login />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />

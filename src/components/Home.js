@@ -5,7 +5,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import Divider from "@mui/material/Divider";
-import images from "../Assets/homegall/a.jpg";
+// import images from "../Assets/homegall/a.jpg";
 import Button from "@mui/material/Button";
 
 const itemData = [
