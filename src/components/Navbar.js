@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -23,7 +24,6 @@ const pages = [
   { name: "Products", NavLink: "/products", id: 2 },
   { name: "Contact", NavLink: "/contact", id: 3 },
 ];
-// const pages = ["Home", "Products", "Contact"];
 const settings = ["Profile", "Cart", "Orders", "Logout"];
 const users = [
   { name: "Profile", NavLink: "/ParentUser", id: 1 },
@@ -57,7 +57,7 @@ function Navbar() {
       <AppBar
         position="static"
         sx={{
-          background: "#ede0d0",
+          background: "#1e1305",
           display: "flex",
           boxShadow: "none",
           justifyContent: "space-evenly",
@@ -76,7 +76,7 @@ function Navbar() {
                 fontFamily: "Sevillana",
                 fontSize: "30px",
                 fontWeight: 500,
-                color: "#170f04",
+                color: "#EDDFD0",
                 textDecoration: "none",
               }}
             >
@@ -89,7 +89,7 @@ function Navbar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="#170f04"
+                color="#EDDFD0"
               >
                 <MenuIcon />
               </IconButton>
@@ -134,7 +134,7 @@ function Navbar() {
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "#170f04",
+                color: "#EDDFD0",
                 textDecoration: "none",
               }}
             >
@@ -153,7 +153,7 @@ function Navbar() {
                   onClick={() => handelNavigate(page.NavLink)}
                   sx={{
                     my: 2,
-                    color: "#170f04",
+                    color: "#EDDFD0",
                     display: "block",
                     fontFamily: "Nanum Myeongjo",
                     fontWeight: "bold",
@@ -171,7 +171,7 @@ function Navbar() {
             >
               <Tooltip title="Cart items">
                 <IconButton onClick={openCart} sx={{ p: 2, m: 1 }}>
-                  <ShoppingCartIcon />
+                  <ShoppingCartIcon sx={{ color: "#EDDFD0" }} />
                   <Drawer anchor="right" open={open} onClose={openCart}>
                     <Cart open={open} onClose={openCart} />
                   </Drawer>
