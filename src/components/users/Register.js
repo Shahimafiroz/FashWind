@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { Tooltip } from "@mui/material";
 
-function Register({ toggelPage }) {
+function Register({ toggelPage , settingRegisterFromContent }) {
   return (
     <div
       style={{ justifyContent: "center", textAlign: "center", widht: "100%" }}
@@ -60,6 +60,8 @@ function Register({ toggelPage }) {
                 color: "#ede0d0",
               },
             }}
+            onChange={settingRegisterFromContent}
+            name ="name"
             label="Name"
             variant="standard"
           />
@@ -72,6 +74,8 @@ function Register({ toggelPage }) {
                 color: "#ede0d0",
               },
             }}
+            onChange={settingRegisterFromContent}
+            name="phoneNumber"
             label="Phone Number"
             variant="standard"
           />
@@ -84,6 +88,8 @@ function Register({ toggelPage }) {
                 color: "#ede0d0",
               },
             }}
+            onChange={settingRegisterFromContent}
+            name="email"
             label="Email"
             variant="standard"
           />
@@ -96,6 +102,8 @@ function Register({ toggelPage }) {
                 color: "#ede0d0",
               },
             }}
+            onChange={settingRegisterFromContent}
+            name="password"
             label="Password"
             variant="standard"
           />
@@ -124,26 +132,16 @@ function Register({ toggelPage }) {
           </Button>
           {/* <input type="text" id="fname" name="fname" placeholder='Email' style={{background: '#1a4941' ,border: 'none' ,borderBottom : '2px solid ##ede0d0' , color:'#ec6a0c' ,height:'20px' , widht:'15rem' , fontSize:'15px'}} /> */}
         </Box>
-        <Box sx={{ widht: "90%", paddingTop: "3rem" }}>
-          <hr
-            style={{
-              height: 0.3,
-              widht: "60%",
-              marginRight: "150px",
-              marginLeft: "150px",
-            }}
-          />
-
+        <Box sx={{ widht: "90%", paddingTop: "1rem" }}>
           <Box
             onClick={toggelPage}
             sx={{
               fontFamily: "Cormorant Upright",
-              width: "90%",
+              width: "100%",
               textAlign: "center",
               color: "#AF1212",
               fontWeight: "1000",
               fontSize: "15px",
-              paddingTop: "20px",
             }}
           >
             <Tooltip title="Register ?">

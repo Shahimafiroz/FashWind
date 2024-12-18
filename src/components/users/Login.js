@@ -4,7 +4,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import LoginImage from "../../Assets/LoginImage.jpg";
+import LoginImage from "../../Assets/login5.jpg";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useState } from "react";
@@ -14,8 +14,25 @@ import Register from "./Register";
 
 function Login() {
   const [loginOrRegister, setLoginOrRegister] = useState(true);
-
-  console.log("cfvgbhjnkm,lfcvgbhjn", loginOrRegister);
+  const [loginContent , setLoginContent] = useState({
+    email:"",
+    password : ""
+  })
+  const [registerContent , setRegisterContent] = useState({
+    name: "",
+    phoneNumber:"",
+    email:"",
+    password : ""
+  })
+  const settingLoginFromContent = (event) => {
+    setLoginContent((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  };
+  
+  const settingRegisterFromContent = (event) => {
+    setRegisterContent((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  };
+  console.log("🚀 ~ Login ~ loginContent:", loginContent)
+  
   const toggelPage = () => setLoginOrRegister((prev) => !prev);
 
   return (
@@ -79,6 +96,7 @@ function Login() {
                 }}
               >
                 <TextField
+                 onChange={settingLoginFromContent}
                   sx={{
                     paddingBottom: "20px",
                     color: "#ede0d0",
@@ -87,10 +105,12 @@ function Login() {
                       color: "#ede0d0",
                     },
                   }}
+                  name="email"
                   label="Email"
                   variant="standard"
                 />
                 <TextField
+                 onChange={settingLoginFromContent}
                   sx={{
                     paddingBottom: "10px",
                     color: "#ede0d0",
@@ -99,6 +119,8 @@ function Login() {
                       color: "#ede0d0",
                     },
                   }}
+                  // type="password"
+                  name="password"
                   label="Password"
                   variant="standard"
                 />
@@ -115,7 +137,7 @@ function Login() {
                 </Box>
                 <Button
                   sx={{
-                    marginTop: "30px",
+                    marginTop: "80px",
                     background: "#1A4941",
                     width: "150px",
                     fontFamily: "Cormorant Upright",
@@ -127,21 +149,12 @@ function Login() {
                 </Button>
                 {/* <input type="text" id="fname" name="fname" placeholder='Email' style={{background: '#1a4941' ,border: 'none' ,borderBottom : '2px solid ##ede0d0' , color:'#ec6a0c' ,height:'20px' , widht:'15rem' , fontSize:'15px'}} /> */}
               </Box>
-              <Box sx={{ widht: "90%", paddingTop: "3rem" }}>
-                <hr
-                  style={{
-                    height: 0.3,
-                    widht: "60%",
-                    marginRight: "150px",
-                    marginLeft: "150px",
-                  }}
-                />
-
+              <Box sx={{ widht: "90%", paddingTop: "1rem" }}>
                 <Box
                   onClick={toggelPage}
                   sx={{
                     fontFamily: "Cormorant Upright",
-                    width: "90%",
+                    width: "100%",
                     textAlign: "center",
                     color: "#AF1212",
                     fontWeight: "1000",
@@ -156,7 +169,7 @@ function Login() {
               </Box>
             </Box>
           ) : (
-            <Register toggelPage={toggelPage} />
+            <Register toggelPage={toggelPage} settingRegisterFromContent={settingRegisterFromContent} />
           )}
         </Grid>
       </Grid>
