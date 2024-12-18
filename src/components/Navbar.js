@@ -91,13 +91,13 @@ function Navbar() {
                 onClick={handleMenu}
                 color="#EDDFD0"
               >
-                <MenuIcon />
+                <MenuIcon sx={{color:"#EDDFD0"}} />
               </IconButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={showMenu}
                 anchorOrigin={{
-                  vertical: "bottom",
+                  vertical: "top",
                   horizontal: "left",
                 }}
                 keepMounted
@@ -108,7 +108,7 @@ function Navbar() {
                 open={Boolean(showMenu)}
                 onClose={handleMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: "block", md: "none" , marginTop : "3.2rem" },
                 }}
               >
                 {pages.map((page) => (
@@ -121,7 +121,7 @@ function Navbar() {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             <Typography
               variant="h5"
               noWrap
@@ -131,7 +131,7 @@ function Navbar() {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
+                fontFamily: "Sevillana",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "#EDDFD0",
@@ -192,7 +192,7 @@ function Navbar() {
 
               <Tooltip title="Login / Register" sx={{ padding: "50px" }}>
                 <Button
-                  onClick={() => handelNavigate("/loginRegister")}
+                  onClick={() => handelNavigate("/login")}
                   variant="contained"
                   sx={{
                     background: "#20170c",
@@ -203,7 +203,7 @@ function Navbar() {
                     fontWeight: "bold",
 
                     "&:hover": {
-                      background: "#1a4941",
+                      background: "0, 0, 0, 0",
                       color: "#f1720c",
                     },
                   }}

@@ -10,6 +10,7 @@ import SingeleProduct from "./components/products/SingelProduct";
 import Contact from "./components/Contact";
 import { Provider } from "react-redux";
 import store from "./Redux/index";
+import Register from "./components/users/Register";
 function App() {
   return (
     <div
@@ -23,7 +24,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<AllProducts />} />
             <Route path="/products/:id" element={<SingeleProduct />} />
-            <Route path="/loginRegister" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />

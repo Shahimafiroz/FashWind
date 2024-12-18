@@ -31,7 +31,7 @@ function Login() {
   const settingRegisterFromContent = (event) => {
     setRegisterContent((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
-  console.log("🚀 ~ Login ~ loginContent:", loginContent)
+  // console.log("🚀 ~ Login ~ loginContent:", loginContent)
   
   const toggelPage = () => setLoginOrRegister((prev) => !prev);
 
@@ -163,7 +163,17 @@ function Login() {
                   }}
                 >
                   <Tooltip title="Register ?">
-                    <Button>New to FashWind , Register ?</Button>
+                    <Button sx={{
+                fontSize:"15px",
+                fontFamily: "Cormorant Upright",
+                textTransform: "capitalize",
+                fontWeight:"bold",
+                color :"#AF1212",
+                "&:hover": {
+                     background: "0, 0, 0, 0",
+                      color: "#1A4941",
+                    },
+              }}>New to FashWind , Create Account ?</Button>
                   </Tooltip>
                 </Box>
               </Box>

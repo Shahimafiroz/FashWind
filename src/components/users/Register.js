@@ -145,7 +145,17 @@ function Register({ toggelPage , settingRegisterFromContent }) {
             }}
           >
             <Tooltip title="Register ?">
-              <Button>Back To login page</Button>
+              <Button sx={{
+                fontSize:"15px",
+                fontFamily: "Cormorant Upright",
+                textTransform: "capitalize",
+                fontWeight:"bold",
+                color :"#AF1212",
+                "&:hover": {
+                     background: "0, 0, 0, 0",
+                      color: "#1A4941",
+                    },
+              }}>Back To login page</Button>
             </Tooltip>
           </Box>
         </Box>
