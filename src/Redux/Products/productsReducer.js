@@ -51,42 +51,15 @@ const productsReducer = (state = initialState, action) => {
           "5 .product id ",
           clickedProduct.id
         );
-        return eachItem.id == clickedProduct.id;
+        return eachItem.id === clickedProduct.id;
       });
       console.log("index", index);
-      // {const matchingArrayIndex = localCartItems.findIndex((cartItem) => {
-      //   console.log(
-      //     "cart item id ",
-      //     cartItem.id,
-      //     "product id ",
-      //     clickedProduct.id
-      //   );
-      //   return cartItem.id == clickedProduct.id;
-      // });
-      // console.log("Matching index of cart item", matchingArrayIndex);
-      // console.log("gcvcgbhbefge", clickedProduct);
-      // if (matchingArrayIndex == -1) {
-      //   localCartItems = [...localCartItems, { ...clickedProduct }];
-      //   console.log("here are the cart items", localCartItems);
-      // } else {
-      //   localCartItems[matchingArrayIndex] = {
-      //     ...localCartItems[matchingArrayIndex],
-      //     quantity:
-      //       localCartItems[matchingArrayIndex.quantity] +
-      //       clickedProduct.quantity,
-      //   };
-      //   console.log(
-      //     "here is the updated qunatity object ",
-      //     localCartItems[matchingArrayIndex]
-      //   );
-      // }
-      //}
       if (index !== -1) {
         localCartItems[index] = {
           ...localCartItems[index],
           quantity: localCartItems[index].quantity + clickedProduct.quantity,
         };
-        console.log("Indeqter than -1) ----------->", localCartItems[index]);
+        console.log("Indeqter than -1) ------->", localCartItems[index]);
         //
       } else {
         console.log("THE INDEX IS -1  -------->", localCartItems[index]);

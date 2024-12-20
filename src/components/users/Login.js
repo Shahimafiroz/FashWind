@@ -44,11 +44,12 @@ function Login() {
         justifyContent: "center",
       }}
     >
-      <Grid sx={{}} container spacing={0}>
-        <Grid xs={12} md={8}>
+      <Grid item sx={{}} container>
+        <Grid item xs={12} md={8}>
           <img style={{ height: "100%", width: "100%" }} src={LoginImage} />
         </Grid>
         <Grid
+         item
           xs={12}
           md={4}
           sx={{
