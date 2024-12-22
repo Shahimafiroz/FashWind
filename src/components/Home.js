@@ -7,14 +7,13 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import Divider from "@mui/material/Divider";
 import Images from "../Assets/images";
-import config from "../config/config"
-// import images from "../Assets/homegall/a.jpg";
+import config from "../config/config";
 import Button from "@mui/material/Button";
-
+import AuthServiceAppWrite from "./../appWrite/AuthService";
 
 function Home() {
-  // console.log("🚀 ~ Button:", config.appWriteURL , config.databaseId , config.bucketId , config.ordersCollectionId , config.projectId)
-  
+  console.log("🚀 ~ Button:", AuthServiceAppWrite);
+
   return (
     <div
       style={{
@@ -36,7 +35,7 @@ function Home() {
       >
         <div style={{ margin: "-18px" }}>
           <img
-            style={{ width: "500px", objectFit: "contain", height: "100%" }}
+            style={{ width: "500px", objectFit: "contain", height: "97%" }}
             src={HomeImage}
             alt="err"
           />

@@ -1,18 +1,18 @@
 /* eslint-disable */
-import React from "react";
-// import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+import React  from "react";
+import { Box , Paper , Grid , TextField , Button , Tooltip , Typography } from "@mui/material";
 import LoginImage from "../../Assets/login5.jpg";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { useState } from "react";
-import { Tooltip } from "@mui/material";
-import Typography from "@mui/material/Typography";
 import Register from "./Register";
+import { useState } from "react";
+
+import AuthServiceAppWrite from "../../appWrite/AuthService";
+
+// khanshahima4@gmail.com , Shahima@1
 
 function Login() {
+
+///////////////////////// state management  /////////////////////
+
   const [loginOrRegister, setLoginOrRegister] = useState(true);
   const [loginContent , setLoginContent] = useState({
     email:"",
@@ -31,9 +31,42 @@ function Login() {
   const settingRegisterFromContent = (event) => {
     setRegisterContent((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
-  // console.log("🚀 ~ Login ~ loginContent:", loginContent)
+  console.log("🚀 ~ Login ~ loginContent:", loginContent , "Register conatent " , registerContent) 
   
   const toggelPage = () => setLoginOrRegister((prev) => !prev);
+
+  ////////////////////////   login APi call    ////////////////////////////////
+  
+  
+  const loginService = () => {
+    console.log("Shahima khanajkxnskjnxckjwn");
+
+    const authService = new AuthServiceAppWrite();
+    // console.log("🚀 ~ loginService ~ authService:", authService);
+
+    const loginInstance = async () => {
+      console.log("🚀 ~ loginService ~ loginService:", loginService);
+      try {
+        const sessionLogin = await authService.loginIntoAccount(loginContent);
+        if (sessionLogin) {
+          const userData = await authService.getCurrentUser();
+          if (userData) {
+            console.log("🚀 ~ loginInstance ~ userData:", userData);
+          }
+        }
+      } catch (error) {
+        console.log("🚀 ~ loginInstance ~ error:", error);
+        throw error;
+      }
+    };
+
+    // Call loginInstance to execute the login logic
+    loginInstance();
+  };
+
+
+
+
 
   return (
     <div
@@ -137,6 +170,7 @@ function Login() {
                   <p>Forgot password ?</p>
                 </Box>
                 <Button
+                  onClick={loginService}
                   sx={{
                     marginTop: "80px",
                     background: "#1A4941",
