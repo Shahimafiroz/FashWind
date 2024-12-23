@@ -4,6 +4,7 @@ import { Box , Paper , Grid , TextField , Button , Tooltip , Typography } from "
 import LoginImage from "../../Assets/login5.jpg";
 import Register from "./Register";
 import { useState } from "react";
+import config from "./../../config/config"
 
 import AuthServiceAppWrite from "../../appWrite/AuthService";
 
@@ -31,43 +32,68 @@ function Login() {
   const settingRegisterFromContent = (event) => {
     setRegisterContent((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
-  console.log("🚀 ~ Login ~ loginContent:", loginContent , "Register conatent " , registerContent) 
+  // console.log("🚀 ~ Login ~ loginContent:", loginContent , "Register conatent " , registerContent) 
+  // console.log("🚀 ~ config:" , config ) 
   
   const toggelPage = () => setLoginOrRegister((prev) => !prev);
 
   ////////////////////////   login APi call    ////////////////////////////////
   
   
-  const loginService = () => {
-    console.log("Shahima khanajkxnskjnxckjwn");
+  const loginRegisterService = (type) => {
+    console.log("1 login from front end started  . . . . .");
 
     const authService = new AuthServiceAppWrite();
-    // console.log("🚀 ~ loginService ~ authService:", authService);
+    console.log("🚀 ~ auth service instantiateds :", authService);
 
-    const loginInstance = async () => {
-      console.log("🚀 ~ loginService ~ loginService:", loginService);
-      try {
-        const sessionLogin = await authService.loginIntoAccount(loginContent);
-        if (sessionLogin) {
-          const userData = await authService.getCurrentUser();
-          if (userData) {
-            console.log("🚀 ~ loginInstance ~ userData:", userData);
+    //////////// login //////////
+    switch (type) {
+
+      case "login":
+
+        const loginInstance = async () => {
+          console.log("🚀 ~ 2  login instance :", );
+          try {
+            const sessionLogin = await authService.loginIntoAccount(loginContent);
+            console.log("🚀 ~ 3 ~ sessionLogin:", sessionLogin)
+            if (sessionLogin) {
+              const userData = await authService.getCurrentUser();
+              if (userData) {
+                console.log("🚀 ~ 4 ~ userData:", userData);
+              }
+            }
+          } catch (error) {
+            console.log("🚀 ~ ERRRORORORORO ~ error:", error);
+            throw error;
           }
+        };
+
+        loginInstance()
+        break;
+        case "reg":
+          const registerInstance = async () => {
+          console.log("🚀 ~ registerInstance ~ registerInstance:", type , registerContent)
+          try {
+                const newAccount =  await authService.createAccount(registerContent);
+                 console.log("🚀 ~ registerService ~ newAccount:", newAccount ,registerContent)     
+              } catch (error) {
+                console.log("🚀 ~ registerInstance ~ error:", error)
+              }
         }
-      } catch (error) {
-        console.log("🚀 ~ loginInstance ~ error:", error);
-        throw error;
-      }
-    };
-
-    // Call loginInstance to execute the login logic
-    loginInstance();
+        registerInstance();
+        break;
+      default:
+        break;
+    }
+    
+   
   };
+ 
 
 
 
 
-
+  ////////////////////////////////////////////// Jsx ///////////////////////////////////
   return (
     <div
       style={{
@@ -170,7 +196,7 @@ function Login() {
                   <p>Forgot password ?</p>
                 </Box>
                 <Button
-                  onClick={loginService}
+                  onClick={() => loginRegisterService("login")}
                   sx={{
                     marginTop: "80px",
                     background: "#1A4941",
@@ -214,7 +240,7 @@ function Login() {
               </Box>
             </Box>
           ) : (
-            <Register toggelPage={toggelPage} settingRegisterFromContent={settingRegisterFromContent} />
+            <Register toggelPage={toggelPage} settingRegisterFromContent={settingRegisterFromContent} loginRegisterService={loginRegisterService} />
           )}
         </Grid>
       </Grid>

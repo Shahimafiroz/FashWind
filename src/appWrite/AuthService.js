@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { Client, Account, ID } from "appwrite";
 import config from "./../config/config";
+import { v4 as uuidv4 } from 'uuid';
 
 export class AuthServiceAppWrite {
 
@@ -16,18 +17,23 @@ export class AuthServiceAppWrite {
 
     this.account = new Account(this.client);
   }
-  
-  //////// Creating the account /////////////////////
+   
+  ///////////////////////////////   Creating the account   /////////// /////////////////////
 
   createAccount = async ({ email, password, name }) => {
+    const uniqueId = uuidv4();
     try {
- 
-      const userAccount = await this.account.create(ID.unique, email , password, name);
-      console.log("🚀 !1!!!!!!!!!!!!!!!!!! ~ AuthServiceAppWrite ~ createAccount= ~ userAccount:", userAccount , ID.unique, email , password, name);
+      
+      console.log("🚀 !1!!!!!!!!!!!!!!!!!! ~ AuthServiceAppWrite ~ createAccount= ~ userAccount:",  uniqueId, email , password, name);
+      const userAccount = await this.account.create(uniqueId, email , password, name);
       
       if (userAccount) {
-        return "userAccount Alredy exists!";
+        // return "userAccount Alredy exists!";
         // call login method
+         const userLoginIntoAccount =
+        await this.account.createEmailPasswordSession(email, password);
+        console.log("🚀 ~ D 3 returning the result):", userLoginIntoAccount)
+    return userLoginIntoAccount;
       } else {
         return userAccount;
       }
@@ -42,40 +48,21 @@ export class AuthServiceAppWrite {
   
 
   loginIntoAccount = async ({ email, password }) => {
-
-    let getCurrentUser = async () => {
-      try {
-        const currentUser = await this.account.get();
-        return currentUser;
-      } catch (error) {
-        console.log(
-          "🚀 ~ AuthServiceAppWrite ~ getCurrentUser= ~ error:",
-          error
-        );
-      }
-      return null;
-    };
-
-    if (getCurrentUser) {
-      return getCurrentUser();
-    } else if (getCurrentUser === null) {
-
-       try {
-         console.log("@@@@@@@@@@@@@", ID.unique, email, password);
-         const userLoginIntoAccount =
-           await this.account.createEmailPasswordSession(email, password);
-         return userLoginIntoAccount;
-       } catch (error) {
-         console.log(
-           "🚀 ~ AuthServiceAppWrite ~ loginIntoAccount= ~ error:",
-           error
-         );
-         throw error;
-       }
-      
-    }
-
-
+  console.log("🚀 ~ A   -> Back end request recived ~  email, password:",  email, password)
+    try {
+      await this.account.deleteSessions();
+     console.log("D 2 ) payload ", email, password);
+     const userLoginIntoAccount =
+       await this.account.createEmailPasswordSession(email, password);
+      console.log("🚀 ~ D 3 returning the result):", userLoginIntoAccount)
+    return userLoginIntoAccount;
+  } catch (error) {
+    console.log(
+      "🚀 ~ AuthServiceAppWrite ~ loginIntoAccount= ~ error:",
+      error
+    );
+    throw error;
+  } 
   };
 
   ///////////////////// getting the current logged in user /////////
@@ -83,9 +70,12 @@ export class AuthServiceAppWrite {
   getCurrentUser = async () => {
     try {
       const currentUser = await this.account.get();
-      return currentUser;
+      if(currentUser){
+        console.log("🚀 ~ ++++++++++++++ current user", currentUser)
+        return currentUser;
+      }
     } catch (error) {
-      console.log("🚀 ~ AuthServiceAppWrite ~ getCurrentUser= ~ error:", error)
+      console.log("🚀 ~ ++++++++++++++ AuthServiceAppWrite ~ getCurrentUser= ~ error:", error)
     }
     return null;
   }

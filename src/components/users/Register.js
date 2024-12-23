@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { Tooltip } from "@mui/material";
 
-function Register({ toggelPage , settingRegisterFromContent }) {
+function Register({ toggelPage , settingRegisterFromContent ,loginRegisterService }) {
   return (
     <div
       style={{ justifyContent: "center", textAlign: "center", widht: "100%" }}
@@ -104,7 +104,7 @@ function Register({ toggelPage , settingRegisterFromContent }) {
             }}
             onChange={settingRegisterFromContent}
             name="password"
-            label="Password"
+            label="Password (more than 8 charcters) "
             variant="standard"
           />
           <Box
@@ -119,6 +119,7 @@ function Register({ toggelPage , settingRegisterFromContent }) {
             <p>Forgot password ?</p>
           </Box>
           <Button
+           onClick={()=>{loginRegisterService("reg")}}
             sx={{
               marginTop: "30px",
               background: "#1A4941",
